@@ -1,0 +1,22 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@vinejs/vine": "^3.0.1",
+    "dotenv": "^16.5.0",
+    "dropbox": "^10.34.0",
+    "express": "^5.1.0",
+    "isomorphic-fetch": "^3.0.0",
+    "mongoose": "^8.15.0",
+    "socket.io": "^4.8.1"
+  },
+  "type": "module"
+}
