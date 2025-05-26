@@ -1,0 +1,13 @@
+/* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ﷺ InshaAllah */
+
+import React from 'react'
+
+const Chats = () => {
+  return (
+    <>
+      
+    </>
+  )
+}
+
+export default Chats
