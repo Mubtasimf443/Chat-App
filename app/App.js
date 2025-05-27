@@ -5,12 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { COLORS } from './src/lib/config/env';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator, } from '@react-navigation/native-stack';
-import Wellcome from './src/screens/Wellcome';
 import { createStaticNavigation } from '@react-navigation/native';
-import Join from './src/screens/Login';
-import Home from './src/screens/Home';
-import OtpVerification from './src/screens/OtpVerification';
-import Video from './src/screens/Video';
 import LoadingApp from './src/screens/LoadingApp';
 import Otp from './src/screens/Otp';
 import Login from './src/screens/Login';
@@ -40,6 +35,7 @@ const Navigation = createStaticNavigation(RootStack);
 
 
 export default function App() {
+  
   return (
     <SafeAreaProvider >
       <SafeAreaProvider>

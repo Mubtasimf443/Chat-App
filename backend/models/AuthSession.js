@@ -1,12 +1,22 @@
 /* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ﷺ InshaAllah */
 
-import mongoose from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
-const AuthSessionSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  sessionToken: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-  expiresAt: { type: Date, required: true }
-});
+const schema = new Schema(
+    {
+        token: String,
+        user_id: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "User",
+            required: true,
+            unique: true
+        },
+        createdAt: Date,
+        updatedAt: Date
+    },
+    {
+        timestamps: true
+    }
+);
 
-export const AuthSession = mongoose.model('AuthSession', AuthSessionSchema);
+export const AuthSession = mongoose.model('AuthSession' , schema)

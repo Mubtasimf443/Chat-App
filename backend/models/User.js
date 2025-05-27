@@ -4,14 +4,14 @@ import mongoose from 'mongoose';
 
 
 const UserSchema = new mongoose.Schema({
-  email: { 
+  email: {
     type: String,
     unique: true,
     required: true,
-    index : true , 
+    index: true,
   },
   name: String,
-  avatar: String,
+  avatar: { type: String, default: 'https://res.cloudinary.com/dyptu4vd2/image/upload/v1748022824/ahxfhq76i0auizajvl6h.png', required: true },
   contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   createdAt: { type: Date, default: Date.now }
 });
