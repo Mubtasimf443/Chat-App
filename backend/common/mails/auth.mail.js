@@ -30,7 +30,7 @@ export default async function OptVerificationEmail(email, otpCode) {
         let info = await transporter.sendMail({
             from: SERVER_EMAIL,
             to: email,
-            subject: 'Your ${SERVER_NAME} Authentication Code',
+            subject: `Your ${SERVER_NAME} Authentication Code`,
             text: `Your ${SERVER_NAME} OTP is: ${otpCode}. It expires in 10 minutes.`,
             html: htmlContent,
         });

@@ -8,6 +8,7 @@ import { User } from "../models/User.js";
 import {randomBytes} from 'crypto'
 import OptVerificationEmail from "../common/mails/auth.mail.js";
 import { AuthSession } from "../models/AuthSession.js";
+import { authMiddleware } from "../common/middlewares/auth.middlewares.js";
 
 const router = Router();
 
@@ -37,7 +38,7 @@ router.post('/auth', async function (req = request, res = response) {
             }
         }
 
-        otp = GenerateOtp();
+        let otp = GenerateOtp();
 
         await OptVerificationEmail(email, otp);
 
@@ -126,15 +127,9 @@ router.post('/verify', async function (req = request, res = response) {
         });
     }
 })
-router.post('/loggout', async function (req = request, res = response) {
+router.post('/loggout',authMiddleware, async function (req = request, res = response) {
     try {
-        let schema = vine.object({
-            auth_token: vine.string().regex(/^[a-zA-Z0-9_.-]+$/).minLength(128).maxLength(128)
-        });
-
-        const { auth_token } = await vine.validate({ schema: schema, data: req.body });
-
-        await AuthSession.findOneAndDelete({ token: auth_token });
+        await AuthSession.findOneAndDelete({ user_id: req.userInfo._id });
 
         return res.sendStatus(200)
     } catch (error) {

@@ -5,10 +5,14 @@ import { request, response, Router } from "express";
 import { upload } from "../common/config/multer.js";
 import uploadFile from "../common/utils/uploadFile.js";
 import { Asset } from "../models/Asset.js";
+import {unlinkSync} from 'fs'
+import path from "path";
 
 const router = Router();
 
-router.post('/upload', upload.single('file'),async function (req = request , res = response) {
+
+
+router.post('/upload', upload.single('image'),async function (req = request , res = response) {
     try {
         let file = req.file;
         
@@ -30,6 +34,8 @@ router.post('/upload', upload.single('file'),async function (req = request , res
             hostId : uploadResult.path
         });
 
+        await asset.save();
+
         res.status(200).json({
             success : true,
             data : {
@@ -38,7 +44,10 @@ router.post('/upload', upload.single('file'),async function (req = request , res
             },
             error : null,
             message : 'OK'
-        })
+        });
+
+        unlinkSync(path.join('uploads/' + file.filename))
+        
         return;
     } catch (error) {
         if (error instanceof vineErrors.E_VALIDATION_ERROR) {

@@ -2,7 +2,7 @@
 
 import { request, response } from "express";
 import vine from '@vinejs/vine'
-import { AuthSession } from "../../models/AuthSession";
+import { AuthSession } from "../../models/AuthSession.js";
 
 
 export async function authMiddleware(req = request, res = response, next) {
