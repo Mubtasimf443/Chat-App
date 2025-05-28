@@ -1,6 +1,6 @@
 /* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ﷺ InshaAllah */
 
-import { FROM_EMAIL, SERVER_NAME } from "../config/env.js";
+import { SERVER_EMAIL, SERVER_NAME } from "../config/env.js";
 import transporter from "../config/transporter.js";
 
 
@@ -28,7 +28,7 @@ export default async function OptVerificationEmail(email, otpCode) {
         `;
 
         let info = await transporter.sendMail({
-            from: FROM_EMAIL,
+            from: SERVER_EMAIL,
             to: email,
             subject: 'Your ${SERVER_NAME} Authentication Code',
             text: `Your ${SERVER_NAME} OTP is: ${otpCode}. It expires in 10 minutes.`,
